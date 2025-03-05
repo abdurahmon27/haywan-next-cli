@@ -16,10 +16,16 @@
   "repository": {
     "url": "https://github.com/abdurahmon27/haywan-uz-next-app"
   },
-  "keywords": [],
-  "author": "",
   "license": "MIT",
-  "description": "",
+  "description": "HayWan Frontend CLI for scaffolding Next.js projects",
+  "keywords": [
+    "next.js",
+    "cli",
+    "frontend",
+    "scaffold",
+    "haywan"
+  ],
+  "author": "haywan.uz",
   "dependencies": {
     "chalk": "^5.4.1",
     "execa": "^9.5.2",
