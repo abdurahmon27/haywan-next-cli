@@ -1,6 +1,6 @@
 import chalk from "chalk";
 import { execSync } from "child_process";
-import prompts from "prompts";
+import prompts, { PromptObject } from "prompts";
 import { NextJsConfig } from "../interface/next-config.js";
 
 export async function installNextJs(projectName: string, config: NextJsConfig) {
@@ -43,7 +43,19 @@ export async function installNextJs(projectName: string, config: NextJsConfig) {
 }
 
 export async function getNextJsConfiguration(): Promise<NextJsConfig> {
-  const responses = await prompts([
+  type PromptNames =
+    | "typescript"
+    | "eslint"
+    | "tailwindcss"
+    | "srcDirectory"
+    | "appRouter"
+    | "turbopack"
+    | "importAlias"
+    | "useNextIntl"
+    | "nextIntlLocales"
+    | "nextIntlDefaultLocale";
+
+  const responses = await prompts<PromptNames>([
     {
       type: "confirm",
       name: "typescript",
@@ -86,6 +98,44 @@ export async function getNextJsConfiguration(): Promise<NextJsConfig> {
       message:
         "Import alias ni sozlashni xohlaysizmi? (standart '@/*' bo'ladi)",
       initial: "@/*",
+    },
+    {
+      type: "confirm",
+      name: "useNextIntl",
+      message: "Next-intl o'rnatishni xohlaysizmi?",
+      initial: true,
+    },
+    {
+      type: "multiselect",
+      name: "nextIntlLocales",
+      message: "Qaysi tillarni qo'shmoqchisiz?",
+      choices: [
+        { title: "O'zbek", value: "uz", selected: true },
+        { title: "English", value: "en", selected: true },
+        { title: "Русский", value: "ru", selected: true },
+      ],
+      instructions: false,
+      // @ts-expect-error - 'when' is supported by prompts but not properly typed
+      when: (prev: any) => prev.useNextIntl,
+    },
+    {
+      type: "select",
+      name: "nextIntlDefaultLocale",
+      message: "Standart til qaysi bo'lsin?",
+      choices: (prev: any, values) => {
+        return values.nextIntlLocales.map((locale: string) => ({
+          title:
+            locale === "uz"
+              ? "O'zbek"
+              : locale === "en"
+                ? "English"
+                : "Русский",
+          value: locale,
+        }));
+      },
+      initial: 0,
+      // @ts-expect-error - 'when' is supported by prompts but not properly typed
+      when: (prev: any) => prev.useNextIntl,
     },
   ]);
 

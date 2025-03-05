@@ -99,7 +99,6 @@ import { routing } from './i18n/routing';
 export default createMiddleware(routing);
 
 export const config = {
-  // Match only internationalized pathnames
   matcher: ['/', '/(${config.locales.join("|")})/:path*']
 };
 `;
@@ -119,7 +118,6 @@ async function createLayoutFile(
   fs.mkdirpSync(localeDir);
 
   const layoutContent = `
-import { NextIntlClientProvider } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { redirect } from 'next/navigation';
 import type { Metadata } from "next";
@@ -213,7 +211,6 @@ import { routing } from '@/i18n/routing';
 
 export default function RootPage() {
   redirect('/' + routing.defaultLocale);
-  return null;
 }
 `;
 

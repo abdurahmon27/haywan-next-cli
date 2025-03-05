@@ -18,7 +18,7 @@ interface ExtendedOptions extends Options {
 async function main() {
   console.log(
     gradient.vice(
-      figlet.textSync("HayWan Frontend", {
+      figlet.textSync("Haywan.uz", {
         font: "Standard",
         horizontalLayout: "default",
         verticalLayout: "default",
@@ -28,6 +28,10 @@ async function main() {
 
   console.log(
     "https://haywan.uz tomonidan ishlab chiqildi: qo'llab quvvatlash uchun: https://haywan.uz/blog/support"
+  );
+
+  console.log(
+    `Next.js o'rnatilgandangan so'ng keyingi qadamlarni to'ldirishni unutmang.)`
   );
 
   const promptsOptions: ExtendedOptions = {
@@ -79,20 +83,15 @@ async function main() {
 
       try {
         await execa("rm", ["-rf", `${projectName}/public`]);
+        console.log('Next.js tozalonmoqda...')
       } catch (error) {}
 
-      const nextIntlInstallConfirm = await prompts(
-        {
-          type: "confirm",
-          name: "install",
-          message: "Next-intl o'rnatishni istaysizmi?",
-          initial: true,
-        },
-        promptsOptions
-      );
-
-      if (nextIntlInstallConfirm.install) {
-        await installNextIntl(projectName);
+      if (nextJsConfig.useNextIntl) {
+        await installNextIntl(projectName, {
+          locales: nextJsConfig.nextIntlLocales || ["uz", "en", "ru"],
+          defaultLocale: nextJsConfig.nextIntlDefaultLocale || "uz",
+          useAppRouter: nextJsConfig.appRouter,
+        });
       }
 
       const shadcnInstallConfirm = await prompts(
