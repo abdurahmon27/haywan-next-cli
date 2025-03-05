@@ -1,0 +1,47 @@
+{
+  "name": "haywan-next-cli",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "haywan-next-app": "./dist/index.js"
+  },
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prepare": "npm run clean && npm run build",
+    "test": "echo \"No tests defined\""
+  },
+  "repository": {
+    "url": "https://github.com/abdurahmon27/haywan-uz-next-app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "execa": "^9.5.2",
+    "figlet": "^1.8.0",
+    "fs-extra": "^11.3.0",
+    "gradient-string": "^3.0.0",
+    "ora": "^8.2.0",
+    "prompts": "^2.4.2",
+    "shelljs": "^0.8.5"
+  },
+  "devDependencies": {
+    "@types/figlet": "^1.7.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.13.9",
+    "@types/prompts": "^2.4.9",
+    "@types/shelljs": "^0.8.15",
+    "eslint": "^9.21.0",
+    "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
