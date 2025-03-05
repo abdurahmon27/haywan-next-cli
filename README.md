@@ -20,10 +20,10 @@ Haywan Frontend CLI - bu zamonaviy Next.js loyihalarini xalqarolashtirish, inter
 
 ## O'rnatish
 
-HayWan Frontend O'rnatuvchisini global ravishda o'rnatishingiz mumkin:
+Haywan Frontend CLI global ravishda o'rnatishingiz mumkin:
 
 ```bash
-npm install -g haywan-frontend
+npm install -g haywan-next-cli
 ```
 
 ## Foydalanish
@@ -31,7 +31,7 @@ npm install -g haywan-frontend
 ### Yangi Loyiha Yaratish
 
 ```bash
-npx haywan-frontend
+npx haywan-next-cli
 ```
 
 ### Interaktiv Konfiguratsiya
